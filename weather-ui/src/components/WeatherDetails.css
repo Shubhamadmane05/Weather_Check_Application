@@ -1,0 +1,111 @@
+/* FULL PAGE BACKGROUND */
+.weather-container {
+  min-height: 100vh;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(135deg, #1b2735, #090a0f);
+  background-size: cover;
+}
+
+/* BACK BUTTON */
+.weather-container .btn {
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 12px;
+}
+
+/* MAIN GLASS CARD */
+.glass-card {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* CITY NAME */
+.glass-card h1 {
+  font-size: 45px;
+  font-weight: 700;
+}
+
+/* TEMPERATURE TEXT */
+.temp-large {
+  font-size: 70px;
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+/* 7-DAY FORECAST CARDS */
+.daily-card {
+  padding: 15px;
+  border-radius: 18px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  color: white;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* HOVER EFFECT */
+.daily-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* WEEK DAY NAME */
+.daily-card h6 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* TEMP ROW */
+.daily-card p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+
+
+/* new css */
+
+/* INFO BAR */
+/* .info-bar {
+  margin: 0 auto;
+  margin-top: 25px;
+  max-width: 750px;
+  padding: 18px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+}
+
+.info-bar div {
+  text-align: center;
+}
+
+.info-bar h6 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.weather-animation {
+  width: 180px;
+  height: 180px;
+  margin-top: 10px;
+} */
+
