@@ -14,7 +14,7 @@ const SearchWeather = () => {
     }
 
     try {
-      const API_KEY = "643fab1ab0d350cebfe0b184ccce5342";
+      const API_KEY = "API KEY";
 
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city.trim()}&appid=${API_KEY}&units=metric`
