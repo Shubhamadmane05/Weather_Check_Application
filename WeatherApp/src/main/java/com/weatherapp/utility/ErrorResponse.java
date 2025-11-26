@@ -16,4 +16,5 @@ public class ErrorResponse {
     private int status;
     private LocalDateTime timestamp;
     private String path;
+    private String error;
 }

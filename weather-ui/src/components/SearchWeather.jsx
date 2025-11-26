@@ -1,18 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SearchWeather.css"; // 👈 Add this line for external CSS
+import "./SearchWeather.css";
 
 const SearchWeather = () => {
   const [city, setCity] = useState("");
-  const [error, setError] = useState("");
+  const [errorPopup, setErrorPopup] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!city.trim()) {
-      setError("Please enter a valid city name");
+      setErrorPopup("Please enter a valid city name");
       return;
     }
-    navigate(`/weather/${city.trim()}`);
+
+    try {
+      const API_KEY = "643fab1ab0d350cebfe0b184ccce5342";
+
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city.trim()}&appid=${API_KEY}&units=metric`
+      );
+
+      const data = await response.json();
+
+      if (data.cod === 401) {
+        setErrorPopup("Invalid API key. Please update your API key.");
+        return;
+      }
+
+      if (data.cod === "404") {
+        setErrorPopup("City not found. Please try again!");
+        return;
+      }
+
+      navigate(`/weather/${city.trim()}`);
+
+    } catch (error) {
+      setErrorPopup("Network error. Please try again!");
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -20,29 +44,44 @@ const SearchWeather = () => {
   };
 
   return (
-    <div className="weather-search-container">
-      <div className="weather-card">
-        <h2 className="weather-title">Weather Forecast</h2>
+    <>
+      <div className="search-bg">
+        <div className="glass-box">
+          <h1 className="title">Weather</h1>
+          <p className="subtitle">Search</p>
 
-        <input
-          type="text"
-          className="weather-input"
-          placeholder="Enter city..."
-          value={city}
-          onChange={(e) => {
-            setCity(e.target.value);
-            setError("");
-          }}
-          onKeyDown={handleKeyPress}
-        />
+          <input
+            type="text"
+            className="input-box"
+            placeholder="Enter city"
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+              setErrorPopup("");
+            }}
+            onKeyDown={handleKeyPress}
+          />
 
-        {error && <p className="error-text">{error}</p>}
+          {errorPopup && <p className="error-text  fs-5 fw-bold">{errorPopup}</p>}
 
-        <button className="weather-btn" onClick={handleSearch}>
-          Search
-        </button>
+          <button className="search-btn" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       </div>
-    </div>
+
+      {/* POPUP ERROR */}
+      {/* {errorPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <p>{errorPopup}</p>
+            <button className="popup-btn" onClick={() => setErrorPopup("")}>
+              OK
+            </button>
+          </div>
+        </div>
+      )} */}
+    </>
   );
 };
 
@@ -50,56 +89,3 @@ export default SearchWeather;
 
 
 
-
-
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// const SearchWeather = () => {
-//   const [city, setCity] = useState("");
-//   const [error, setError] = useState("");
-//   const navigate = useNavigate();
-
-//   const handleSearch = () => {
-//     if (!city.trim()) {
-//       setError("Please enter a valid city name");
-//       return;
-//     }
-
-//     navigate(`/weather/${city.trim()}`);
-//   };
-
-//   const handleKeyPress = (e) => {
-//     if (e.key === "Enter") {
-//       handleSearch();
-//     }
-//   };
-
-//   return (
-//     <div className="d-flex justify-content-center align-items-center vh-100 bg-primary text-white">
-//       <div className="card p-5 bg-transparent border-0 text-center">
-//         <h1 className="mb-4 fw-bold">Weather Forecast</h1>
-
-//         <input
-//           type="text"
-//           className="form-control"
-//           placeholder="Enter city name..."
-//           value={city}
-//           onChange={(e) => {
-//             setCity(e.target.value);
-//             setError("");
-//           }}
-//           onKeyDown={handleKeyPress}
-//         />
-
-//         {error && <p className="text-danger mt-2">{error}</p>}
-
-//         <button className="btn btn-light mt-3 fw-bold w-100" onClick={handleSearch}>
-//           Search
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SearchWeather;

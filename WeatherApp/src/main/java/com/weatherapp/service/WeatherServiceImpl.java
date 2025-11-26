@@ -74,7 +74,6 @@ public class WeatherServiceImpl implements WeatherService{
         throw new CityNotFoundException("City '" + city + "' Not Found or Unavailable");
     }
 
-
 }
 
     @Override
@@ -123,7 +122,7 @@ public class WeatherServiceImpl implements WeatherService{
         String cityLower = city.toLowerCase().trim();
 
         try {
-            // 1) Call FREE OpenWeather Forecast API
+            // Call FREE OpenWeather Forecast API
             String url = forecastUrl + "?q=" + cityLower + "&appid=" + apiKey + "&units=metric";
             String response = restTemplate.getForObject(url, String.class);
 
@@ -134,7 +133,7 @@ public class WeatherServiceImpl implements WeatherService{
                 throw new CityNotFoundException("City '" + city + "' Not Found");
             }
 
-            // 2) Extract city info
+            //  Extract city info
             JsonNode cityNode = root.get("city");
             String cityName = cityNode.get("name").asText();
             String country = cityNode.get("country").asText();
@@ -156,21 +155,19 @@ public class WeatherServiceImpl implements WeatherService{
                 dailyList.add(dto);
             }
 
-            // 4) Build response DTO
+            // response DTO
             return ForecastResponseDTO.builder()
                     .city(cityName)
                     .country(country)
                     .lat(lat)
                     .lon(lon)
-                    .daily(dailyList)          // NO "current" in free forecast API
+                    .daily(dailyList)
                     .build();
 
         } catch (CityNotFoundException e) {
-            throw e; // rethrow custom exception
+            throw e;
         } catch (Exception e) {
             throw new RuntimeException("Error parsing forecast API: " + e.getMessage());
         }
     }
-
-
 }

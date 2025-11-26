@@ -1,111 +1,143 @@
-/* FULL PAGE BACKGROUND */
+/* FULL PAGE MODERN BACKGROUND */
 .weather-container {
   min-height: 100vh;
-  padding: 30px;
+  padding: 40px;
   color: white;
-  background: linear-gradient(135deg, #1b2735, #090a0f);
+
+  background: radial-gradient(circle at top left, #2a5298, #1e3c72, #0f172a);
   background-size: cover;
+  background-position: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* SMOOTH FADE EFFECT */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* BACK BUTTON */
 .weather-container .btn {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.75);
   font-weight: 600;
-  padding: 8px 18px;
+  border: none;
+  padding: 8px 20px;
   border-radius: 12px;
+  transition: 0.2s;
+}
+
+.weather-container .btn:hover {
+  background: white;
+  transform: scale(1.05);
 }
 
 /* MAIN GLASS CARD */
 .glass-card {
   width: 100%;
-  max-width: 650px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 30px;
   margin-top: 20px;
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 22px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-/* CITY NAME */
-.glass-card h1 {
-  font-size: 45px;
-  font-weight: 700;
-}
-
-/* TEMPERATURE TEXT */
-.temp-large {
-  font-size: 70px;
-  font-weight: 900;
-  margin-top: 10px;
-}
-
-/* 7-DAY FORECAST CARDS */
-.daily-card {
-  padding: 15px;
-  border-radius: 18px;
+  padding: 35px;
   text-align: center;
 
   background: rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+  animation: slideDown 0.8s ease;
+}
+
+/* SLIDE PAGE DOWN */
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* CITY TITLE */
+.glass-card h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+/* MAIN TEMPERATURE */
+.temp-large {
+  font-size: 85px;
+  font-weight: 900;
+  margin-top: 15px;
+
+  background: linear-gradient(90deg, #ffe259, #ffa751);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glow 2s infinite alternate ease-in-out;
+}
+
+/* GLOWING TEMPERATURE */
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(255, 198, 0, 0.5); }
+  to { text-shadow: 0 0 25px rgba(255, 165, 0, 0.9); }
+}
+
+/* MAIN WEATHER ICON */
+.glass-card img {
+  width: 110px;
+  margin-top: 10px;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
+}
+
+/* ---DAILY FORECAST -*/
+
+.daily-card {
+  padding: 18px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(12px);
   color: white;
-  transition: transform 0.2s ease-in-out;
+  text-align: center;
+
+  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   cursor: pointer;
 }
 
-/* HOVER EFFECT */
 .daily-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px) scale(1.03);
   background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
-/* WEEK DAY NAME */
+/* WEEKDAY NAME */
 .daily-card h6 {
-  font-size: 17px;
-  font-weight: 700;
-}
-
-/* TEMP ROW */
-.daily-card p {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 8px 0 4px;
-}
-
-
-/* new css */
-
-/* INFO BAR */
-/* .info-bar {
-  margin: 0 auto;
-  margin-top: 25px;
-  max-width: 750px;
-  padding: 18px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
-}
-
-.info-bar div {
-  text-align: center;
-}
-
-.info-bar h6 {
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   margin-bottom: 5px;
 }
 
-.weather-animation {
-  width: 180px;
-  height: 180px;
-  margin-top: 10px;
-} */
+/* DAILY ICON */
+.daily-card img {
+  width: 55px;
+  margin: 5px 0;
+  filter: drop-shadow(0 0 5px white);
+}
 
+/* TEMP */
+.daily-card p {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* DESCRIPTION */
+.daily-card small {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.date-text {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
